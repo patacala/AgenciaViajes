@@ -6,6 +6,7 @@ import { PagesModule } from './pages/pages.module';
 
 // rutas
 import { APP_ROUTES } from './app.routes';
+import { FormsModule } from '@angular/forms';
 
 // componentes
 import { AppComponent } from './app.component';
@@ -16,11 +17,12 @@ import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     PagesModule,
+    FormsModule,
     APP_ROUTES
   ],
   providers: [],
