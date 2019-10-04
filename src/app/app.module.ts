@@ -12,6 +12,11 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
+// servicios
+import { ServiceModule } from './services/service.module';
+
+
+
 
 
 @NgModule({
@@ -23,6 +28,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     PagesModule,
     FormsModule,
+    ServiceModule,
     APP_ROUTES
   ],
   providers: [],
