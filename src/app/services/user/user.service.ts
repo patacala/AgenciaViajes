@@ -18,9 +18,13 @@ export class UserService {
 
   constructor( public http: HttpClient,
                private router: Router) {
-    console.log('servicio usuario listo para usar');
+    // console.log('servicio usuario listo para usar');
     this.loadStorage();
     this.url = URL_SERVICES;
+  }
+
+  getUsers() {
+    return this.http.get(this.url + '/user');
   }
 
   isLogged() {
@@ -76,6 +80,7 @@ export class UserService {
       this.usuario = null;
     }
   }
+
 
 
 }

@@ -6,6 +6,8 @@ import {
   SidebarService,
   SharedService,
   UserService,
+  HotelService,
+  CiudadesService,
   LoginGuardGuard
 } from './service.index';
 
@@ -20,6 +22,8 @@ import {
               SidebarService,
               SharedService,
               UserService,
+              HotelService,
+              CiudadesService,
               LoginGuardGuard
             ]
 })

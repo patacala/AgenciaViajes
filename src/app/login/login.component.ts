@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/service.index';
-import { FormGroup, FormControl, Validators } from '../../../node_modules/@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Usuario } from '../models/usuario.model';
 import Swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
@@ -41,10 +41,8 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar() {
-    console.log(this.form.value);
+    // console.log(this.form.value);
     const usuario = new Usuario(null, null, this.form.value.user, this.form.value.password);
-    console.log('user: ' + this.form.value.user +  'pass: ' + this.form.value.password);
-
     if (this.form.valid) {
       this.userService.login(usuario, this.form.value.remember)
                             .subscribe(response => {
