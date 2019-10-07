@@ -8,6 +8,7 @@ import {
   UserService,
   HotelService,
   CiudadesService,
+  HabitacionService,
   LoginGuardGuard
 } from './service.index';
 
@@ -24,6 +25,7 @@ import {
               UserService,
               HotelService,
               CiudadesService,
+              HabitacionService,
               LoginGuardGuard
             ]
 })

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 // modulos
@@ -31,7 +32,8 @@ import { ServiceModule } from './services/service.module';
     FormsModule,
     ServiceModule,
     ReactiveFormsModule,
-    APP_ROUTES
+    APP_ROUTES,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

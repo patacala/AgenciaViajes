@@ -13,7 +13,9 @@
         </div>
     </div>
 </div>
+<button class="btn btn-primary m-b-20" (click)="openModal(nuevoHotel); vaciarFormulario()">Nuevo Hotel</button>
 <div class="row">
+    
     <div class="col-sm-12 col-md-3 animated fadeIn" *ngFor="let hotel of hoteles; let i  = index">
         <div class="card card-hotel">
             <img class="card-img-top img-responsive" src="../assets/images/big/img7.jpg" alt="Card image cap">
@@ -25,7 +27,7 @@
                 </ul>
                 <h4 class="title">{{hotel.nombre}}</h4>
                 <div class="card-button-footer">
-                    <a class="btn btn-primary pointer m-r-10"><i class="ti-pencil text-white"></i> </a>
+                    <a (click)="openModal(nuevoHotel); llenarModal(hotel)"  class="btn btn-primary pointer m-r-10"><i class="ti-pencil text-white"></i> </a>
                     <a (click)="desactivarHotel(hotel)" class="btn btn-danger pointer"><i class="ti-lock text-white"></i> </a>
                 </div>
             </div>
@@ -33,6 +35,58 @@
         </div>
     </div>
 </div>
+
+
+<ng-template #nuevoHotel>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Gestion Hotel</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <form ngNativeValidate [formGroup]="forma" (ngSubmit)="guardarHotel()">
+                    <div class="form-group">
+                        <label for="ciudad_id">Ciudad</label>
+                        <select formControlName="ciudad_id" name="ciudad_id" class="custom-select form-control" id="ciudad_id">
+                            <option >Elige una opcion</option>
+                            <option *ngFor="let ciudad of ciudades"  [attr.value]="ciudad._id">{{ciudad.nombre_ciudad}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre Hotel</label>
+                        <input formControlName="nombre" name="nombre" type="text" class="form-control" id="nombre" placeholder="Hotel">
+                    </div>            
+                    <div class="form-group">
+                        <label for="estrellas">Estrellas</label>
+                        <select formControlName="estrellas" name="estrellas" class="custom-select form-control" id="">
+                            <option selected="">Elige una opcion</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>  
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <select formControlName="estado" name="estado" class="custom-select form-control" id="">
+                            <option selected="">Elige una opcion</option>
+                            <option value="A">Activo</option>
+                            <option value="I">Inactivo</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="_id" formControlName="_id">                                 
+                    <input type="hidden" name="usuario_id" formControlName="usuario_id">                                 
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar Hotel</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</ng-template>
 
 <ngx-spinner bdOpacity = 0.9
 bdColor = "rgba(219,219,219,0.67)"

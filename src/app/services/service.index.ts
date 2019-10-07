@@ -8,5 +8,6 @@ export { SidebarService } from './shared/sidebar.service';
 export { UserService } from './user/user.service';
 export { HotelService } from './hotel/hotel.service';
 export { CiudadesService } from './ciudades/ciudades.service';
+export { HabitacionService } from './habitacion/habitacion.service';
 
 

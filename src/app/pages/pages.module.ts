@@ -1,6 +1,6 @@
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {NgModule} from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // modulos
 import { SharedModule } from '../shared/shared.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -44,6 +44,7 @@ import { PAGES_ROUTES } from './pages.routes';
         FormsModule,
         NgxSpinnerModule,
         CommonModule,
+        ReactiveFormsModule,
         PAGES_ROUTES
     ]
 })

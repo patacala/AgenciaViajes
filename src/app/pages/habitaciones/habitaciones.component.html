@@ -1,1 +1,118 @@
-<p>habitaciones works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3>Filtro:</h3>
+
+            </div>
+        </div>
+    </div>
+</div>
+<button class="btn btn-primary m-b-20" (click)="openModal(nuevaHabitacion); vaciarFormulario()">Nuevo Habitacion</button>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                
+                <h3 class="card-title">Habitaciones Registradas ( <small>{{habitaciones.length}}</small> )</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ubicacion</th>
+                            <th>Tipo Habitacion</th>
+                            <th>Costo Base</th>
+                            <th>Impuesto</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                            <!-- <th>Role</th>
+                            <th></th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr *ngFor="let user of arrayUsuarios">
+                            <td>{{user.email}}</td>
+                            <td>{{user.nombre}} {{user.apellido}}</td>
+                            
+                        </tr> -->
+                        <tr *ngFor="let habitacion of habitaciones">
+                            <td>{{habitacion.ubicacion}}</td>
+                            <td>{{habitacion.tipohabitacion_id.nombre}}</td>
+                            <td>$ {{habitacion.tipohabitacion_id.costo_base | number}}</td>
+                            <td>{{habitacion.tipohabitacion_id.impuestos}}%</td>
+                            <td *ngIf="habitacion.estado === 'A'"><span class="label label-success">Activa</span></td>
+                            <td *ngIf="habitacion.estado === 'I'"><span class="label label-danger">Inactiva</span></td>
+                            <td>
+                                <a (click)="openModal(nuevaHabitacion); llenarformulario(habitacion)"  class="btn btn-primary pointer m-r-10"><i class="ti-pencil text-white"></i> </a>
+                                <a (click)="desactivarHabitacionl(habitacion)" class="btn btn-danger pointer"><i class="ti-lock text-white"></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #nuevaHabitacion>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Gestion Habitacion</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <form ngNativeValidate [formGroup]="forma" (ngSubmit)="guardarHotel()">
+                    
+                    <div class="form-group">
+                        <label for="hotel_id">Hotel</label>
+                        <select formControlName="hotel_id" name="hotel_id" class="custom-select form-control" >
+                            <option >Elige una opcion</option>
+                            <option *ngFor="let hotel of hoteles"  [attr.value]="hotel._id">{{hotel.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipohabitacion_id">Tipo Habitacion</label>
+                        <select formControlName="tipohabitacion_id" name="tipohabitacion_id" class="custom-select form-control" >
+                            <option >Elige una opcion</option>
+                            <option *ngFor="let tipoh of tipoHabitaciones"  [attr.value]="tipoh._id">{{tipoh.nombre}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ubicacion">Ubicacion De habitacion </label>
+                        <input formControlName="ubicacion" name="ubicacion" type="text" class="form-control" id="ubicacion" placeholder="101, 102 ...">
+                    </div>                        
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <select formControlName="estado" name="estado" class="custom-select form-control" id="">
+                            <option selected="">Elige una opcion</option>
+                            <option value="A">Activo</option>
+                            <option value="I">Inactivo</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="_id" formControlName="_id">                                 
+                    <input type="hidden" name="usuario_id" formControlName="usuario_id">                                 
+                    <input type="hidden" name="estado_reserva" formControlName="estado_reserva">                                 
+                    <input type="hidden" name="cc" formControlName="codigo_reserva">                                 
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar Hotel</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</ng-template>
+    
+<ngx-spinner bdOpacity = 0.9
+bdColor = "rgba(219,219,219,0.67)"
+size = "medium"
+color = "#8e17db"
+type = "square-jelly-box"
+[fullScreen] = "true"
+>
+</ngx-spinner>

@@ -3,12 +3,10 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { URL_SERVICES } from '../../config/config';
 import { UserService } from '../user/user.service';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
-export class HotelService {
+export class HabitacionService {
   url: string;
   token: string;
 
@@ -17,28 +15,27 @@ export class HotelService {
     this.token = userService.token;
   }
 
-  getHotels() {
+  getRooms() {
     const options = this.setHeader(this.token);
-    return this.http.get(this.url + '/hoteles', options);
+    return this.http.get(this.url + '/habitacion', options);
   }
 
-  getHotelsByCriteria(params: any) {
+  getTypeRooms() {
+    const options = this.setHeader(this.token);
+    return this.http.get(this.url + '/tipo-habitacion', options);
+  }
+
+  updateHabitacion(params: any) {
     const options: any = this.setHeader(this.token);
-    options.params = params;
-    return this.http.get(this.url + '/hoteles', options);
+    return this.http.put(this.url + '/habitacion', params, options);
   }
 
-  updateHotel(params: any) {
-    const options: any = this.setHeader(this.token);
-    return this.http.put(this.url + '/hoteles', params, options);
-  }
-
-  saveHotel(params: any) {
+  saveHabitacion(params: any) {
     if (params._id === '') {
       delete params._id;
     }
     const options: any = this.setHeader(this.token);
-    return this.http.post(this.url + '/hoteles', params, options);
+    return this.http.post(this.url + '/habitacion', params, options);
   }
 
   setHeader(token) {
@@ -49,6 +46,5 @@ export class HotelService {
     };
     return httpOptions;
   }
-
 
 }
